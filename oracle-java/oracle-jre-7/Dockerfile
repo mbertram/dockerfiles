@@ -11,11 +11,10 @@ WORKDIR /tmp
 
 RUN \
   echo "Installing Java" && \
-  wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}-${JAVA_BUILD}/jre-${JAVA_VERSION}-linux-x64.tar.gz" && \
-  tar xzf jre-${JAVA_VERSION}-linux-x64.tar.gz -C /opt
+  wget --no-check-certificate --no-cookies --header "Cookie: oraclelicense=accept-securebackup-cookie" "http://download.oracle.com/otn-pub/java/jdk/${JAVA_VERSION}-${JAVA_BUILD}/jre-${JAVA_VERSION}-linux-x64.rpm" && \
+  rpm -i jre-${JAVA_VERSION}-linux-x64.rpm
 
 RUN echo "Cleaning up" && \
-  rm /tmp/jre-${JAVA_VERSION}-linux-x64.tar.gz
+  rm /tmp/jre-${JAVA_VERSION}-linux-x64.rpm
 
-ENV JAVA_HOME ${JAVA_DIR}
-ENV PATH ${PATH}:${JAVA_HOME}/bin
+ENV JAVA_HOME /usr/java/default

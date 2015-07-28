@@ -6,4 +6,4 @@ How to build?
 
 They can be tested by running 
 
-`docker run -t -i base-jre7 /bin/sh -c java -fullversion`
+`docker run -t -i jre7 /bin/sh -c java -fullversion`

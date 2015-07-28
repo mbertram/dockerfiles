@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t=mbertram/base-jre-8 .
+docker build -t=mbertram/jre-8 .

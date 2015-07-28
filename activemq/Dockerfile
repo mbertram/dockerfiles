@@ -1,4 +1,4 @@
-FROM mbertram/base-jre-8
+FROM mbertram/jre-8
 
 EXPOSE 61612 61613 61616 8161
 

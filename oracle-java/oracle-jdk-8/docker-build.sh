@@ -1,3 +1,3 @@
 #!/bin/bash
 
-docker build -t=mbertram/base-jdk-8 .
+docker build -t=mbertram/jdk-8 .
