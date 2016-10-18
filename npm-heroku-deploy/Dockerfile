@@ -1,6 +1,5 @@
-FROM centos
+FROM ubuntu
 
-RUN yum -y update; yum clean all
 RUN yum -y install epel-release tar wget; yum clean all
 
 #Install heroku
@@ -11,10 +10,12 @@ ENV PATH /usr/local/heroku/bin:$PATH
 
 #Install NVM and node version 4
 
-RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash
-ENV NVM_DIR /root/.nvm
-RUN source "$NVM_DIR/nvm.sh"
-RUN nvm install v4
+ENV NODE_VERSION 4.6
+ENV NVM_DIR $HOME/.nvm
 
-
+RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash \
+    && source $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 
