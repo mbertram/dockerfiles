@@ -1,21 +1,23 @@
-FROM ubuntu
+FROM alpine
 
-RUN yum -y install epel-release tar wget; yum clean all
+RUN apk update
+RUN apk add --update bash
+RUN apk add tar
+RUN apk add wget
+RUN apk add sudo
+RUN apk add which
+RUN apk add ruby
+RUN apk add --update ca-certificates
 
-#Install heroku
-
-RUN yum -y install ruby sudo which
 RUN  wget -qO- https://toolbelt.heroku.com/install.sh | sh
+
 ENV PATH /usr/local/heroku/bin:$PATH
+ENV NVM_DIR /.nvm
 
-#Install NVM and node version 4
+RUN wget -qO- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash \
+   && . /.nvm/nvm.sh \
+   && nvm install 4.6 \
+   && nvm alias default 4.6 \
+   && nvm use default
 
-ENV NODE_VERSION 4.6
-ENV NVM_DIR $HOME/.nvm
-
-RUN curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.32.0/install.sh | bash \
-    && source $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
-
+RUN rm -rf /var/cache/apk/*
