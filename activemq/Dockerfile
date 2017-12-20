@@ -1,11 +1,12 @@
-FROM mbertram/jre-8
+FROM mbertram/jre-9
 
 EXPOSE 61612 61613 61616 8161
+ENV ACTIVE_MQ_VERSION 5.15.2
 
 RUN \
-  wget -qO - http://apache.osuosl.org/activemq/5.11.1/apache-activemq-5.11.1-bin.tar.gz | tar xz -C /opt
+  wget -qO - http://apache.osuosl.org/activemq/${ACTIVE_MQ_VERSION}/apache-activemq-${ACTIVE_MQ_VERSION}-bin.tar.gz | tar xz -C /opt
 
-WORKDIR /opt/apache-activemq-5.11.1
+WORKDIR /opt/apache-activemq-${ACTIVE_MQ_VERSION}
 
 RUN \
   mv ./conf/activemq.xml ./conf/activemq.xml.orig && \

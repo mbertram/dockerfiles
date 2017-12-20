@@ -1,4 +1,4 @@
-Simple images that install Oracle Java into a CentOS 6 image.
+Simple images that install Oracle Java into an Amazon Linux 2 image.
 
 How to build?
 
